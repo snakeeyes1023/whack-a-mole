@@ -1,0 +1,6 @@
+{
+  "appTitle": "wack_a_mole",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
