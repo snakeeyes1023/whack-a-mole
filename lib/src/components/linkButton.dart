@@ -3,10 +3,17 @@ import 'package:flutter/material.dart';
 import 'customButton.dart';
 
 class LinkButton extends CustomButton {
-  const LinkButton({super.key, text}) : super(text: text);
+  VoidCallback? onClick;
+
+  LinkButton({super.key, text, this.onClick, isActive = false})
+      : super(text: text, isActive: isActive);
 
   @override
   onButtonClicked() {
-    print("Link button clicked");
+    if (onClick != null) {
+      onClick!.call();
+    } else {
+      print("Link button clicked");
+    }
   }
 }
