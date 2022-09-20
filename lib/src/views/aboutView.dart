@@ -10,7 +10,7 @@ class AboutView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-      padding: const EdgeInsets.all(100),
+      padding: EdgeInsets.only(top: 20, left: 30, right: 30),
       //master text and some text
       child: Center(
           child: SingleChildScrollView(
@@ -52,6 +52,7 @@ class AboutView extends StatelessWidget {
                   )),
               Center(
                   child: RipplesAnimation(
+                onPressed: () => Navigator.pop(context),
                 key: key,
               ))
             ]),
