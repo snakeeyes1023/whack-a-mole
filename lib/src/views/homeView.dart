@@ -30,7 +30,7 @@ class HomeView extends StatelessWidget {
               const Padding(
                   padding: EdgeInsets.only(top: 30),
                   child: Text(
-                    'WAKE-A-MOLE',
+                    'WHACK-A-MOLE',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
