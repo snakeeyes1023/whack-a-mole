@@ -32,7 +32,7 @@ class _RipplesAnimationState extends State<RipplesAnimation>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     )..repeat();
 
@@ -70,7 +70,7 @@ class _RipplesAnimationState extends State<RipplesAnimation>
             ),
           ),
           child: ScaleTransition(
-              scale: Tween(begin: 0.95, end: 1.0).animate(
+              scale: Tween(begin: 0.0, end: 1.0).animate(
                 CurvedAnimation(
                   parent: _controller,
                   curve: const CurveWave(),

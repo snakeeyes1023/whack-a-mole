@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wack_a_mole/src/components/linkButton.dart';
 import 'package:wack_a_mole/src/helper/colorHelper.dart';
 import 'package:wack_a_mole/src/views/aboutView.dart';
+import 'package:wack_a_mole/src/views/scoreValidatorView.dart';
 import '../components/waveButton/rippleAnimation.dart';
 
 /// Displays the various settings that can be customized by the user.
@@ -22,7 +23,7 @@ class HomeView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                  padding: EdgeInsets.only(top: 20, left: 30, right: 30),
+                  padding: const EdgeInsets.only(top: 20, left: 30, right: 30),
                   child: Center(
                       child: RipplesAnimation(
                     key: key,
@@ -48,26 +49,33 @@ class HomeView extends StatelessWidget {
                     ),
                   )),
               Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Center(
                       child: LinkButton(
                     text: 'PLAY',
                     isActive: true,
                   ))),
               Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Center(
                       child: LinkButton(
                     text: 'HIGH SCORES',
                   ))),
               Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Center(
                       child: LinkButton(
                     text: 'SCORE VALIDATOR',
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ScoreValidatorView()),
+                      );
+                    },
                   ))),
               Padding(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Center(
                       child: LinkButton(
                     text: 'ABOUT',
