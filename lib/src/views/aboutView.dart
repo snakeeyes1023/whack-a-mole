@@ -52,6 +52,7 @@ class AboutView extends StatelessWidget {
                   )),
               Center(
                   child: RipplesAnimation(
+                    color: Colors.white,
                 onPressed: () => Navigator.pop(context),
                 key: key,
               ))

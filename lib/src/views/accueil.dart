@@ -1,8 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:wack_a_mole/src/components/linkButton.dart';
-import 'package:wack_a_mole/src/helper/colorHelper.dart';
-import 'package:wack_a_mole/src/views/aboutView.dart';
 import 'package:wack_a_mole/src/views/homeView.dart';
 import '../components/waveButton/rippleAnimation.dart';
 
@@ -24,11 +20,11 @@ class _MyHomePageState extends State<HomePage> {
 @override
 void initState() {
 	super.initState();
-	Timer(Duration(seconds: 3),
+	Timer(const Duration(seconds: 2),
 		()=>Navigator.pushReplacement(context,
 										MaterialPageRoute(builder:
 														(context) =>
-														HomeView()
+														const HomeView()
 														)
 									)
 		);

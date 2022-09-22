@@ -76,8 +76,8 @@ class _RipplesAnimationState extends State<RipplesAnimation>
                   curve: const CurveWave(),
                 ),
               ),
-              child: Image.asset('assets/images/circle.png',
-                  width: widget.size * 0.6, height: widget.size * 0.6)),
+              child: widget.color == ColorHelper.blue ? Image.asset('assets/images/circle.png',width: widget.size * 0.6, height: widget.size * 0.6,) : Image.asset('assets/images/circle_white.png',width: widget.size * 0.6, height: widget.size * 0.6,)),
+          
         ),
       ),
     );
