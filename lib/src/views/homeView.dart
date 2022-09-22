@@ -6,6 +6,12 @@ import '../components/waveButton/rippleAnimation.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
+///
+///
+///
+
+
+
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
