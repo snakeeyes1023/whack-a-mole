@@ -1,8 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:wack_a_mole/src/components/linkButton.dart';
-import 'package:wack_a_mole/src/helper/colorHelper.dart';
-import 'package:wack_a_mole/src/views/aboutView.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:wack_a_mole/src/views/homeView.dart';
 import '../components/waveButton/rippleAnimation.dart';
 
@@ -24,11 +21,11 @@ class _MyHomePageState extends State<HomePage> {
 @override
 void initState() {
 	super.initState();
-	Timer(Duration(seconds: 3),
+	Timer(const Duration(seconds: 2),
 		()=>Navigator.pushReplacement(context,
 										MaterialPageRoute(builder:
 														(context) =>
-														HomeView()
+														const HomeView()
 														)
 									)
 		);
@@ -36,7 +33,19 @@ void initState() {
 @override
 Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      backgroundColor: const Color.fromARGB(255, 16, 28, 79),
+        body: Padding(
+      padding: const EdgeInsets.all(5),
+      child: Container(
+          width: double.infinity,
+          height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+          repeat: ImageRepeat.repeat,
+        image: Svg('assets/images/backgroundPattern.svg', size: Size.square(35)),
+        colorFilter: ColorFilter.mode(Color.fromARGB(255, 33, 82, 150), BlendMode.modulate),
+      )),
+      child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -56,7 +65,7 @@ Widget build(BuildContext context) {
           ],
         ),
       ),
-    );
+    )));
   }
 }
 
