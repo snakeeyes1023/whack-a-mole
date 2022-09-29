@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wack_a_mole/src/components/linkButton.dart';
 import 'package:wack_a_mole/src/helper/colorHelper.dart';
 import 'package:wack_a_mole/src/views/aboutView.dart';
+import 'package:wack_a_mole/src/views/game/gameView.dart';
 import 'package:wack_a_mole/src/views/scoreValidatorView.dart';
 import '../components/waveButton/rippleAnimation.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
@@ -11,8 +12,6 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 ///
 ///
 ///
-
-
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -72,6 +71,12 @@ class HomeView extends StatelessWidget {
                       child: LinkButton(
                     text: 'PLAY',
                     isActive: true,
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => GameView()),
+                      );
+                    },
                   ))),
               Padding(
                   padding: const EdgeInsets.only(top: 10),
