@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:async/async.dart';
 
 import 'package:flutter/material.dart';
+import 'package:wack_a_mole/src/helper/colorHelper.dart';
 import 'package:wack_a_mole/src/views/game/startGameView.dart';
 
 import '../../components/waveButton/rippleAnimation.dart';
@@ -91,7 +92,7 @@ class _GameView extends State<GameView> {
         top: widget.randomInstance.nextInt(500).toDouble(),
         left: widget.randomInstance.nextInt(500).toDouble(),
         child: RipplesAnimation(
-          color: Colors.blue,
+          color: ColorHelper.blue,
           size: 40,
           key: widget.key,
           onPressed: () => nextLevel(true),
