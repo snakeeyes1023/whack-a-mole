@@ -37,6 +37,7 @@ class _GameView extends State<GameView> {
       return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
+            centerTitle: true,
             leading: Text("Bonus" + "\n" + widget.score.toString()),
             title: Text("Score" + "\n" + widget.bonus.toString()),
             actions: [
@@ -47,7 +48,6 @@ class _GameView extends State<GameView> {
             toolbarHeight: 120,
           ),
           body: const Scaffold(
-            body: Text("game"),
           ));
     } else {
       return StartGameView(key: widget.key, _onStartGame);
