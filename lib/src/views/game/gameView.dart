@@ -47,7 +47,7 @@ class _GameView extends State<GameView> {
   void nextLevel(bool success) {
     widget.timer.cancel();
     widget.timer =
-        RestartableTimer(widget.duration -= Duration(seconds: 1), tick);
+        RestartableTimer(widget.duration -= const Duration(seconds: 1), tick);
 
     setState(() {
       success ? win() : loose();
@@ -105,18 +105,94 @@ class _GameView extends State<GameView> {
   Widget build(BuildContext context) {
     if (widget.gameStarted) {
       return Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            leading: Text("Bonus \n" + widget.score.toString()),
-            title: Text("Score \n" + widget.bonus.toString()),
-            actions: [
-              Text("Life \n" + widget.life.toString()),
-            ],
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-            toolbarHeight: 120,
+          body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/background.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          body: Scaffold(body: Stack(children: widget.moles)));
+          Column(
+            children: [
+              SizedBox(
+                height: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.05),
+                      child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                              style: const TextStyle(
+                                  color: ColorHelper.blue),
+                              children: [
+                            const TextSpan(
+                                text: "BONUS \n",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 12)),
+                            TextSpan(
+                                text: "${widget.life}",
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold)),
+                          ])),
+                    ),
+                    RichText(
+                        textAlign: TextAlign.center,
+                        text: TextSpan(
+                            style: const TextStyle(
+                                color: ColorHelper.blue),
+                            children: [
+                          const TextSpan(
+                              text: "SCORE \n",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 12)),
+                          TextSpan(
+                              text: "${widget.life}",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold)),
+                        ])),
+                    Padding(
+                        padding: EdgeInsets.only(
+                            right: MediaQuery.of(context).size.width * 0.05),
+                        child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                                style: const TextStyle(
+                                    color: ColorHelper.blue),
+                                children: [
+                              const TextSpan(
+                                  text: "LIFE \n",
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 12)),
+                              TextSpan(
+                                  text: "${widget.life}",
+                                  style: const TextStyle(
+                                      color: ColorHelper.blue,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                      )),
+                            ])))
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Stack(
+                  children: widget.moles,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ));
     } else {
       return StartGameView(key: widget.key, onStartGame);
     }
