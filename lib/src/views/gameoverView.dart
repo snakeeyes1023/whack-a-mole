@@ -27,6 +27,7 @@ class _GameoverViewState extends State<GameOverView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         backgroundColor: const Color.fromARGB(255, 16, 28, 79),
         body: Padding(
             padding: const EdgeInsets.all(5),
