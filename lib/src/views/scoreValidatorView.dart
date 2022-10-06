@@ -40,6 +40,7 @@ class _ScoreValidatorViewState extends State<ScoreValidatorView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           leading: GestureDetector(
