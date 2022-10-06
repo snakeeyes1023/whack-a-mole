@@ -42,7 +42,7 @@ class _LinkButton extends State<LinkButton> {
     GestureDetector(
 
       onTapDown: (details) => setState(() {
-        widget.isActive ?  widget.textColor = Colors.white : widget.textColor = Colors.black;
+        widget.textColor = Colors.black;
         widget.scaleMutliplier = 1.1;
       }),
       onTapCancel: () => setState(() {

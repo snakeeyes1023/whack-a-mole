@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:wack_a_mole/src/views/homeView.dart';
-import '../components/linkButton.dart';
+import '../components/customButton.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
@@ -56,6 +56,7 @@ return Scaffold(
                   child: Center(
                       child: LinkButton(
                     text: 'BACK TO MENU',
+                    isActive: true,
                     onClick: () {
                       Navigator.push(
                         context,
