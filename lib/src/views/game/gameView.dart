@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:wack_a_mole/src/helper/colorHelper.dart';
 import 'package:wack_a_mole/src/views/game/startGameView.dart';
+import 'package:wack_a_mole/src/views/gameoverView.dart';
 
 import '../../components/waveButton/rippleAnimation.dart';
 
@@ -19,7 +20,7 @@ class GameView extends StatefulWidget {
   int bonus = 0;
   late Duration duration;
   late RestartableTimer timer;
-  int timerDuration = 14;
+  int timerDuration = 2;
 
   List<Widget> moles = [];
 
@@ -49,8 +50,8 @@ class _GameView extends State<GameView> {
   */
   void nextLevel(bool success) {
     widget.timer.cancel();
-    widget.timer =
-        RestartableTimer(widget.duration -= const Duration(seconds: 1), tick);
+    widget.duration = Duration(seconds: widget.timerDuration) * 0.6;
+    widget.timer = RestartableTimer(widget.duration, tick);
 
     setState(() {
       success ? win() : loose();
@@ -76,15 +77,19 @@ class _GameView extends State<GameView> {
       widget.life -= 1;
 
       if (widget.life == 0) {
-        widget.gameStarted = false;
-
-        Navigator.pop(context, widget.score);
-
-        showStatusBar();
-
-        //need to redirect the the gameoverView
+        endGame();
       }
     });
+  }
+
+  void endGame() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => GameOverView(widget.score),
+        ));
+
+    showStatusBar();
   }
 
   /*
@@ -94,8 +99,12 @@ class _GameView extends State<GameView> {
     setState(() {
       widget.moles.clear();
       widget.moles.add(Positioned(
-        top: widget.randomInstance.nextInt(500).toDouble(), 
-        left: widget.randomInstance.nextInt(500).toDouble(),
+        top: widget.randomInstance
+            .nextInt(MediaQuery.of(context).size.height.toInt() - 200)
+            .toDouble(),
+        left: widget.randomInstance
+            .nextInt(MediaQuery.of(context).size.width.toInt() - 200)
+            .toDouble(),
         child: RipplesAnimation(
           color: ColorHelper.blue,
           size: 40,
@@ -137,7 +146,7 @@ class _GameView extends State<GameView> {
                           padding: EdgeInsets.only(
                               left: MediaQuery.of(context).size.width * 0.05),
 
-                              // Utilisation d'un RichText pour avoir un texte avec des styles différents
+                          // Utilisation d'un RichText pour avoir un texte avec des styles différents
                           child: RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
@@ -149,7 +158,7 @@ class _GameView extends State<GameView> {
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 12)),
                                     TextSpan(
-                                        text: "${widget.life}",
+                                        text: "${widget.bonus}",
                                         style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 18,
@@ -166,7 +175,7 @@ class _GameView extends State<GameView> {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 12)),
                                   TextSpan(
-                                      text: "${widget.life}",
+                                      text: "${widget.score}",
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
@@ -210,13 +219,16 @@ class _GameView extends State<GameView> {
       return StartGameView(key: widget.key, onStartGame);
     }
   }
-    // Cache la status bar du téléphone
-   Future hideStatusBar() async {
-    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+
+  // Cache la status bar du téléphone
+  Future hideStatusBar() async {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: []);
   }
-    // Affiche la status bar du téléphone
-    Future showStatusBar() async {
+
+  // Affiche la status bar du téléphone
+  Future showStatusBar() async {
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
-}
+  }
 }
