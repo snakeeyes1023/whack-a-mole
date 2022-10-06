@@ -6,6 +6,9 @@ import 'package:wack_a_mole/src/views/game/gameView.dart';
 import 'package:wack_a_mole/src/views/scoreValidatorView.dart';
 import '../components/waveButton/rippleAnimation.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:wack_a_mole/src/views/highscoreView.dart';
+
+import 'gameoverView.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
@@ -18,8 +21,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-    Scaffold(
+    return Scaffold(
       backgroundColor: const Color.fromARGB(255, 16, 28, 79),
         body: Padding(
       padding: const EdgeInsets.all(5),
@@ -82,7 +84,14 @@ class HomeView extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: Center(
                       child: LinkButton(
-                    text: 'HIGH SCORES', onClick: () {  },
+                    text: 'HIGH SCORES',
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HighscoreView()),
+                      );
+                    },
                   ))),
               Padding(
                   padding: const EdgeInsets.only(top: 10),

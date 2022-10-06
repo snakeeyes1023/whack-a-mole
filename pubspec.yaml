@@ -10,6 +10,7 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
+  faker: ^2.0.0
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -32,4 +33,5 @@ flutter:
     # Add assets from the images directory to the application.
     - assets/images/
     - assets/images/backgroundPattern.svg
+    - assets/images/bugIcon.svg
 
