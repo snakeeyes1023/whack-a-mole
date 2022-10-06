@@ -80,6 +80,8 @@ class _GameView extends State<GameView> {
 
         Navigator.pop(context, widget.score);
 
+        showStatusBar();
+
         //need to redirect the the gameoverView
       }
     });
@@ -134,6 +136,8 @@ class _GameView extends State<GameView> {
                         Padding(
                           padding: EdgeInsets.only(
                               left: MediaQuery.of(context).size.width * 0.05),
+
+                              // Utilisation d'un RichText pour avoir un texte avec des styles différents
                           child: RichText(
                               textAlign: TextAlign.center,
                               text: TextSpan(
@@ -210,4 +214,9 @@ class _GameView extends State<GameView> {
    Future hideStatusBar() async {
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   }
+    // Affiche la status bar du téléphone
+    Future showStatusBar() async {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+}
 }
