@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:async/async.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:wack_a_mole/src/helper/colorHelper.dart';
 import 'package:wack_a_mole/src/views/game/startGameView.dart';
@@ -18,7 +19,7 @@ class GameView extends StatefulWidget {
   int bonus = 0;
   late Duration duration;
   late RestartableTimer timer;
-  int timerDimension = 14;
+  int timerDuration = 14;
 
   List<Widget> moles = [];
 
@@ -34,8 +35,9 @@ class _GameView extends State<GameView> {
 
   /* start the timer */
   void onStartGame() {
+    hideStatusBar();
     setState(() {
-      widget.duration = Duration(seconds: widget.timerDimension);
+      widget.duration = Duration(seconds: widget.timerDuration);
       widget.gameStarted = true;
       widget.timer = RestartableTimer(widget.duration, tick);
       appendNew();
@@ -90,7 +92,7 @@ class _GameView extends State<GameView> {
     setState(() {
       widget.moles.clear();
       widget.moles.add(Positioned(
-        top: widget.randomInstance.nextInt(500).toDouble(),
+        top: widget.randomInstance.nextInt(500).toDouble(), 
         left: widget.randomInstance.nextInt(500).toDouble(),
         child: RipplesAnimation(
           color: ColorHelper.blue,
@@ -203,5 +205,9 @@ class _GameView extends State<GameView> {
     } else {
       return StartGameView(key: widget.key, onStartGame);
     }
+  }
+    // Cache la status bar du téléphone
+   Future hideStatusBar() async {
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   }
 }

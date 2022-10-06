@@ -51,4 +51,5 @@ class StartGameView extends StatelessWidget {
       )),
     ));
   }
+ 
 }
