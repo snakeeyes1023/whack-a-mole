@@ -40,7 +40,7 @@ class _GameoverViewState extends State<GameOverView> {
         )),
         child: Column(children: [
           Padding(
-            padding: const EdgeInsets.only(top: 60, left: 400, right: 400),
+            padding: const EdgeInsets.only(top: 60, left: 50, right: 50),
             //master text and some text
             child: Center(
                 child: SingleChildScrollView(
@@ -48,8 +48,7 @@ class _GameoverViewState extends State<GameOverView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Center(
-                        child: Image(image: Svg('images/bugIcon.svg', size: Size(50, 50)) )),
+                    Image.asset('assets/images/bugIcon.png', width: 50, height: 50),
                     const Text(
                       'GAME OVER',
                       style: TextStyle(
