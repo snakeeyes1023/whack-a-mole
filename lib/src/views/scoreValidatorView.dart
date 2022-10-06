@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import '../components/input/customInputField.dart';
-import '../components/linkButton.dart';
+import '../components/customButton.dart';
 import '../helper/colorHelper.dart';
 
 class ScoreValidatorView extends StatefulWidget {
@@ -120,7 +120,7 @@ class _ScoreValidatorViewState extends State<ScoreValidatorView> {
                             child: LinkButton(
                           text: 'VALIDATE SCORE',
                           isActive: true,
-                          onClick: _showIsScoreExist,
+                          onClick: () { _showIsScoreExist(); },
                         ))),
                     const Padding(
                         padding: EdgeInsets.symmetric(vertical: 30),

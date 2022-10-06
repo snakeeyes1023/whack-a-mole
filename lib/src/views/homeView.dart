@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wack_a_mole/src/components/linkButton.dart';
+import 'package:wack_a_mole/src/components/customButton.dart';
 import 'package:wack_a_mole/src/helper/colorHelper.dart';
 import 'package:wack_a_mole/src/views/aboutView.dart';
 import 'package:wack_a_mole/src/views/game/gameView.dart';
@@ -71,7 +71,7 @@ class HomeView extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 10),
                   child: Center(
                       child: LinkButton(
-                    text: 'PLAY',
+                    text: 'NEW GAME',
                     isActive: true,
                     onClick: () {
                       Navigator.push(
