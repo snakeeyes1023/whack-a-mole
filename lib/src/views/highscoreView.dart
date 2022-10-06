@@ -192,4 +192,3 @@ class HighscoreView extends StatefulWidget {
                 ]))));
   }
 }
-

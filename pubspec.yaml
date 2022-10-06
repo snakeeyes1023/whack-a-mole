@@ -33,5 +33,5 @@ flutter:
     # Add assets from the images directory to the application.
     - assets/images/
     - assets/images/backgroundPattern.svg
-    - assets/images/bugIcon.svg
+    - assets/images/bugIcon.png
 
