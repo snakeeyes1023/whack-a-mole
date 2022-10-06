@@ -10,7 +10,7 @@ class HighscoreView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-return Scaffold(
+    return Scaffold(
         backgroundColor: const Color.fromARGB(255, 16, 28, 79),
         body: Padding(
       padding: const EdgeInsets.all(5),
