@@ -99,8 +99,12 @@ class _GameView extends State<GameView> {
     setState(() {
       widget.moles.clear();
       widget.moles.add(Positioned(
-        top: widget.randomInstance.nextInt(500).toDouble(),
-        left: widget.randomInstance.nextInt(500).toDouble(),
+        top: widget.randomInstance
+            .nextInt(MediaQuery.of(context).size.height.toInt() - 200)
+            .toDouble(),
+        left: widget.randomInstance
+            .nextInt(MediaQuery.of(context).size.width.toInt() - 200)
+            .toDouble(),
         child: RipplesAnimation(
           color: ColorHelper.blue,
           size: 40,
@@ -154,7 +158,7 @@ class _GameView extends State<GameView> {
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 12)),
                                     TextSpan(
-                                        text: "${widget.life}",
+                                        text: "${widget.bonus}",
                                         style: const TextStyle(
                                             color: Colors.white,
                                             fontSize: 18,
@@ -171,7 +175,7 @@ class _GameView extends State<GameView> {
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 12)),
                                   TextSpan(
-                                      text: "${widget.life}",
+                                      text: "${widget.score}",
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
