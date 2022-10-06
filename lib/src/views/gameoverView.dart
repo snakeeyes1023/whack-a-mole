@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import '../components/input/customInputField.dart';
-import '../components/linkButton.dart';
+import '../components/customButton.dart';
 import '../components/waveButton/rippleAnimation.dart';
 import '../helper/colorHelper.dart';
 import 'homeView.dart';

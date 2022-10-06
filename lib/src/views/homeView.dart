@@ -89,8 +89,7 @@ class HomeView extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          //temporaire!!!!
-                            builder: (context) => GameOverView()),
+                            builder: (context) => HighscoreView()),
                       );
                     },
                   ))),
