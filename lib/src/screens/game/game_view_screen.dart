@@ -4,14 +4,15 @@ import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:wack_a_mole/src/helper/colorHelper.dart';
-import 'package:wack_a_mole/src/views/game/startGameView.dart';
-import 'package:wack_a_mole/src/views/gameoverView.dart';
+import 'package:wack_a_mole/src/screens/game/start_game_screen.dart';
+import '../../components/custom_button.dart';
+import '../../components/input/custom_input_field.dart';
+import '../../components/waveButton/ripple_animation.dart';
+import '../../helper/color_helper.dart';
+import 'game_over_screen.dart';
 
-import '../../components/waveButton/rippleAnimation.dart';
-
-class GameView extends StatefulWidget {
-  GameView({super.key});
+class GameScreen extends StatefulWidget {
+  GameScreen({super.key});
 
   Random randomInstance = Random();
   bool gameStarted = false;
@@ -28,7 +29,7 @@ class GameView extends StatefulWidget {
   _GameView createState() => _GameView();
 }
 
-class _GameView extends State<GameView> {
+class _GameView extends State<GameScreen> {
   /* This method is trigger by the timer so the player missed the button */
   void tick() {
     nextLevel(false);
@@ -86,7 +87,7 @@ class _GameView extends State<GameView> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => GameOverView(widget.score),
+          builder: (context) => GameOverScreen(widget.score),
         ));
     widget.timer.cancel();
     showStatusBar();
@@ -216,7 +217,7 @@ class _GameView extends State<GameView> {
             ],
           ));
     } else {
-      return StartGameView(key: widget.key, onStartGame);
+      return StartGameScreen(key: widget.key, onStartGame);
     }
   }
 

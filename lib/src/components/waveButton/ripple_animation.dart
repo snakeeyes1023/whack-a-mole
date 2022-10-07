@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/animation.dart';
-import 'package:wack_a_mole/src/components/waveButton/circlePainter.dart';
-import 'package:wack_a_mole/src/components/waveButton/curveWave.dart';
-import 'package:wack_a_mole/src/helper/colorHelper.dart';
+import 'package:wack_a_mole/src/components/waveButton/circle_painter.dart';
+import 'package:wack_a_mole/src/components/waveButton/curve_wave.dart';
+import 'package:wack_a_mole/src/helper/color_helper.dart';
 
 class RipplesAnimation extends StatefulWidget {
   RipplesAnimation({
@@ -76,8 +76,17 @@ class _RipplesAnimationState extends State<RipplesAnimation>
                   curve: const CurveWave(),
                 ),
               ),
-              child: widget.color == ColorHelper.blue ? Image.asset('assets/images/circle.png',width: widget.size * 0.6, height: widget.size * 0.6,) : Image.asset('assets/images/circle_white.png',width: widget.size * 0.6, height: widget.size * 0.6,)),
-          
+              child: widget.color == ColorHelper.blue
+                  ? Image.asset(
+                      'assets/images/circle.png',
+                      width: widget.size * 0.6,
+                      height: widget.size * 0.6,
+                    )
+                  : Image.asset(
+                      'assets/images/circle_white.png',
+                      width: widget.size * 0.6,
+                      height: widget.size * 0.6,
+                    )),
         ),
       ),
     );
