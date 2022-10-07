@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:wack_a_mole/src/views/homeView.dart';
-import '../components/customButton.dart';
+
+import '../components/custom_button.dart';
+import 'home_screen.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
-class HighscoreView extends StatefulWidget {
-  HighscoreView({super.key});
+class HighscoreScreen extends StatefulWidget {
+  HighscoreScreen({super.key});
 
   final List<String> entriesDate = <String>[
     '06/10/2022 15:04:55',
@@ -14,8 +15,6 @@ class HighscoreView extends StatefulWidget {
     '06/10/2022 15:04:55',
     '06/10/2022 15:04:55',
     '06/10/2022 15:04:55',
-    
-    
   ];
   final List<String> entriesPlayerName = <String>[
     'PLAYERA',
@@ -32,21 +31,13 @@ class HighscoreView extends StatefulWidget {
     '10000'
   ];
 
-
   var listIndex;
 
-  
-
   @override
-  _HighscoreViewState createState() => _HighscoreViewState();
-
+  _HighscoreScreenState createState() => _HighscoreScreenState();
 }
 
-
-  class _HighscoreViewState extends State<HighscoreView> {
-
-    
-
+class _HighscoreScreenState extends State<HighscoreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 16, 28, 79),
@@ -91,79 +82,88 @@ class HighscoreView extends StatefulWidget {
                                       SizedBox(
                                           height: 250,
                                           child: ListView.separated(
-                                            itemCount: widget.entriesDate.length,
+                                            itemCount:
+                                                widget.entriesDate.length,
                                             itemBuilder: (BuildContext context,
                                                 int index) {
                                               return GestureDetector(
-
-                                                onTapDown: (details) => setState(() {
-
+                                                onTapDown: (details) =>
+                                                    setState(() {
                                                   // On récupère l'index de l'élément sur lequel on a cliqué
                                                   widget.listIndex = index;
                                                 }),
-
-                                                onTapUp: (details) => setState(() {
+                                                onTapUp: (details) =>
+                                                    setState(() {
                                                   widget.listIndex = null;
                                                 }),
-
                                                 onTapCancel: () => setState(() {
                                                   widget.listIndex = null;
                                                 }),
-
-                                              
                                                 child: Container(
-                                                height: 50,
+                                                  height: 50,
 
-                                                // Si l'index égal à l'index de la liste, alors on change la couleur
+                                                  // Si l'index égal à l'index de la liste, alors on change la couleur
 
-                                                color: (widget.listIndex == index) ? Colors.blue[index % 2 == 0 ? 600 : 500] : Colors.grey[index % 2 == 0 ? 600 : 500],
-                                              
+                                                  color: (widget.listIndex ==
+                                                          index)
+                                                      ? Colors.blue[
+                                                          index % 2 == 0
+                                                              ? 600
+                                                              : 500]
+                                                      : Colors.grey[
+                                                          index % 2 == 0
+                                                              ? 600
+                                                              : 500],
 
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
-                                                  children: <Widget>[                                                    
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: MediaQuery.of(
-                                                              context)
-                                                              .size
-                                                              .width *
-                                                              0.02),
-                                                      child: Text(
-                                                        widget.entriesDate[index],
-                                                        style: const TextStyle(
-                                                          color: Colors.white,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: <Widget>[
+                                                      Padding(
+                                                        padding: EdgeInsets.only(
+                                                            left: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.02),
+                                                        child: Text(
+                                                          widget.entriesDate[
+                                                              index],
+                                                          style:
+                                                              const TextStyle(
+                                                            color: Colors.white,
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  
-                                                     Text(
+                                                      Text(
                                                         widget.entriesPlayerName[
                                                             index],
-                                                        textAlign: TextAlign.center,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      )
-                                                    ,
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          right: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .width *
-                                                              0.02),
-                                                      child: Text(
-                                                        widget.entriesScore[index],
+                                                        textAlign:
+                                                            TextAlign.center,
                                                         style: const TextStyle(
                                                             color:
                                                                 Colors.white),
                                                       ),
-                                                    ),
-                                                  ],
+                                                      Padding(
+                                                        padding: EdgeInsets.only(
+                                                            right: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.02),
+                                                        child: Text(
+                                                          widget.entriesScore[
+                                                              index],
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
-                                              ),
                                               );
                                             },
                                             separatorBuilder:
@@ -186,7 +186,7 @@ class HighscoreView extends StatefulWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => HomeView()),
+                                            builder: (context) => HomeScreen()),
                                       );
                                     },
                                   ))),

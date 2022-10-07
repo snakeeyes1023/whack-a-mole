@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
-import '../components/input/customInputField.dart';
-import '../components/customButton.dart';
-import '../components/waveButton/rippleAnimation.dart';
-import '../helper/colorHelper.dart';
-import 'homeView.dart';
+import '../../components/custom_button.dart';
+import '../../components/input/custom_input_field.dart';
+import '../../components/waveButton/ripple_animation.dart';
+import '../home_screen.dart';
 
-class GameOverView extends StatefulWidget {
-  GameOverView(int score, {key}) : super(key: key) {
+
+class GameOverScreen extends StatefulWidget {
+  GameOverScreen(int score, {key}) : super(key: key) {
     this.score = score;
   }
 
@@ -23,7 +23,7 @@ class GameOverView extends StatefulWidget {
   _GameoverViewState createState() => _GameoverViewState();
 }
 
-class _GameoverViewState extends State<GameOverView> {
+class _GameoverViewState extends State<GameOverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +45,7 @@ class _GameoverViewState extends State<GameOverView> {
                 child: Column(children: [
                   Padding(
                     padding:
-                        const EdgeInsets.only(top: 60, left: 50, right: 50),
+                        const EdgeInsets.only(top: 60, left: 10, right: 10),
                     //master text and some text
                     child: Center(
                         child: SingleChildScrollView(
@@ -113,7 +113,7 @@ class _GameoverViewState extends State<GameOverView> {
                               onPressed: () => Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomeView())),
+                                      builder: (context) => HomeScreen())),
                               key: widget.key,
                             )),
                             CustomInputField(
@@ -129,7 +129,7 @@ class _GameoverViewState extends State<GameOverView> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => HomeView()));
+                                            builder: (context) => HomeScreen()));
                                   },
                                 ))),
                           ]),

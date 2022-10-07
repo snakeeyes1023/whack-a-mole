@@ -1,23 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:wack_a_mole/src/components/customButton.dart';
-import 'package:wack_a_mole/src/helper/colorHelper.dart';
-import 'package:wack_a_mole/src/views/aboutView.dart';
-import 'package:wack_a_mole/src/views/game/gameView.dart';
-import 'package:wack_a_mole/src/views/scoreValidatorView.dart';
-import '../components/waveButton/rippleAnimation.dart';
+import 'package:wack_a_mole/src/screens/score_validator_screen.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
-import 'package:wack_a_mole/src/views/highscoreView.dart';
+import '../components/custom_button.dart';
+import '../components/waveButton/ripple_animation.dart';
+import '../helper/color_helper.dart';
+import 'about_screen.dart';
+import 'game/game_view_screen.dart';
+import 'highscore_screen.dart';
 
-import 'gameoverView.dart';
-
-/// Displays the various settings that can be customized by the user.
-///
-///
-///
-///
-
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +28,6 @@ class HomeView extends StatelessWidget {
                 colorFilter: ColorFilter.mode(
                     Color.fromARGB(255, 33, 82, 150), BlendMode.modulate),
               )),
-              //master text and some text
               child: Center(
                   child: SingleChildScrollView(
                 child: Column(
@@ -80,7 +71,7 @@ class HomeView extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => GameView()),
+                                    builder: (context) => GameScreen()),
                               );
                             },
                           ))),
@@ -93,7 +84,7 @@ class HomeView extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HighscoreView()),
+                                    builder: (context) => HighscoreScreen()),
                               );
                             },
                           ))),
@@ -119,7 +110,7 @@ class HomeView extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const AboutView()),
+                                    builder: (context) => const AboutScreen()),
                               );
                             },
                           )))

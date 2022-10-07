@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:wack_a_mole/src/views/accueil.dart';
-import 'package:wack_a_mole/src/views/game/gameView.dart';
-import 'package:wack_a_mole/src/views/homeView.dart';
+import 'package:wack_a_mole/src/screens/loading_screen.dart';
 import 'settings/settings_controller.dart';
 
 /// The Widget that configures your application.
@@ -67,7 +65,7 @@ class MyApp extends StatelessWidget {
 
                 settings: routeSettings,
                 builder: (BuildContext context) {
-                  return HomePage();
+                  return LoadingScreen();
                 });
           },
         );
