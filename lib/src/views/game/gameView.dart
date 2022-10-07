@@ -83,7 +83,7 @@ class _GameView extends State<GameView> {
   }
 
   void endGame() {
-    Navigator.push(
+    Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => GameOverView(widget.score),
