@@ -43,7 +43,6 @@ class HighscoreView extends StatefulWidget {
 }
 
 
-
   class _HighscoreViewState extends State<HighscoreView> {
 
     
@@ -104,6 +103,10 @@ class HighscoreView extends StatefulWidget {
                                                 }),
 
                                                 onTapUp: (details) => setState(() {
+                                                  widget.listIndex = null;
+                                                }),
+
+                                                onTapCancel: () => setState(() {
                                                   widget.listIndex = null;
                                                 }),
 
