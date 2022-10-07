@@ -76,7 +76,7 @@ class _GameView extends State<GameView> {
     setState(() {
       widget.life -= 1;
 
-      if (widget.life == 0) {
+      if (widget.life <= 0) {
         endGame();
       }
     });
@@ -88,7 +88,7 @@ class _GameView extends State<GameView> {
         MaterialPageRoute(
           builder: (context) => GameOverView(widget.score),
         ));
-
+    widget.timer.cancel();
     showStatusBar();
   }
 
