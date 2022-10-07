@@ -72,7 +72,7 @@ class _LinkButton extends State<LinkButton> {
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(25.0),
+            borderRadius: BorderRadius.circular(30.0),
           ),
           ),
           side: MaterialStateProperty.all<BorderSide>(
