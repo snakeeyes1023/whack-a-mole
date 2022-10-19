@@ -16,6 +16,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_svg_provider: ^1.0.3
+  sqflite: ^2.1.0+1
 
 dev_dependencies:
   flutter_test:
@@ -34,4 +35,5 @@ flutter:
     - assets/images/
     - assets/images/backgroundPattern.svg
     - assets/images/bugIcon.png
+    - assets/wack-a-mole.db
 
