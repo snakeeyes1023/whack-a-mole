@@ -6,6 +6,9 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import '../components/custom_button.dart';
 import '../components/input/custom_input_field.dart';
 import '../helper/color_helper.dart';
+import '../data/entities/score_entity.dart';
+import '../data/services/score_services.dart';
+
 
 class ScoreValidatorView extends StatefulWidget {
   ScoreValidatorView({super.key});
@@ -17,22 +20,34 @@ class ScoreValidatorView extends StatefulWidget {
   TextEditingController nameController = TextEditingController();
   TextEditingController scoreController = TextEditingController();
 
+  final dbHelper = ScoreService();
+
+
+
   @override
   _ScoreValidatorViewState createState() => _ScoreValidatorViewState();
 }
 
 class _ScoreValidatorViewState extends State<ScoreValidatorView> {
+
+
+  
   /*
   * This function is called when the user clicks the "Validate" button.à
   * It will check if the score exist (random) if field are not empty.
   */
-  void _showIsScoreExist() {
+  void _showIsScoreExist(){
     if (widget.dateController.text != '' &&
         widget.nameController.text != '' &&
         widget.scoreController.text != '') {
-      setState(() {
+      setState(() async {
         widget.scoreExists =
             (widget.randomInstance.nextDouble() > .5).toString();
+
+       ScoreEntity score = ScoreEntity(0, int.parse(widget.scoreController.text));
+
+        await widget.dbHelper.insertScore(score);
+
       });
     }
   }
@@ -108,6 +123,7 @@ class _ScoreValidatorViewState extends State<ScoreValidatorView> {
                               fieldController: widget.dateController,
                               text: 'DATE :',
                               labelText: 'DD/MM/YYYY',
+
                             ),
                             CustomInputField(
                               fieldController: widget.nameController,
