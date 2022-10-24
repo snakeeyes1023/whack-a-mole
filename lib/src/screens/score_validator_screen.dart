@@ -9,7 +9,6 @@ import '../helper/color_helper.dart';
 import '../data/entities/score_entity.dart';
 import '../data/services/score_services.dart';
 
-
 class ScoreValidatorView extends StatefulWidget {
   ScoreValidatorView({super.key});
 
@@ -22,33 +21,28 @@ class ScoreValidatorView extends StatefulWidget {
 
   final dbHelper = ScoreService();
 
-
-
   @override
   _ScoreValidatorViewState createState() => _ScoreValidatorViewState();
 }
 
 class _ScoreValidatorViewState extends State<ScoreValidatorView> {
-
-
-  
   /*
   * This function is called when the user clicks the "Validate" button.à
   * It will check if the score exist (random) if field are not empty.
   */
-  void _showIsScoreExist(){
+  void _showIsScoreExist() {
     if (widget.dateController.text != '' &&
         widget.nameController.text != '' &&
         widget.scoreController.text != '') {
-      setState(() async {
+      setState(() {
         widget.scoreExists =
             (widget.randomInstance.nextDouble() > .5).toString();
-
-       ScoreEntity score = ScoreEntity(0, int.parse(widget.scoreController.text));
-
-        await widget.dbHelper.insertScore(score);
-
       });
+
+      ScoreEntity score =
+          ScoreEntity(0, int.parse(widget.scoreController.text));
+
+      widget.dbHelper.insertScore(score);
     }
   }
 
@@ -123,7 +117,6 @@ class _ScoreValidatorViewState extends State<ScoreValidatorView> {
                               fieldController: widget.dateController,
                               text: 'DATE :',
                               labelText: 'DD/MM/YYYY',
-
                             ),
                             CustomInputField(
                               fieldController: widget.nameController,

@@ -18,9 +18,13 @@ class ScoreEntity {
   // columns in the database.
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'creation_date': creationDate,
+      'creation_date': creationDate.toIso8601String(),
       'score': score,
     };
+  }
+
+  @override
+  String toString() {
+    return 'ScoreEntity{id: $id, score: $score, creation_date: $creationDate}';
   }
 }
