@@ -1,14 +1,15 @@
 class ScoreEntity {
   final int id;
+  final String name;
   final int score;
   late DateTime creationDate;
 
-  ScoreEntity(this.id, this.score) {
+  ScoreEntity(this.id, this.score,this.name) {
     creationDate = DateTime.now();
   }
 
   static ScoreEntity FromMap(Map<String, dynamic> map) {
-    var entity = ScoreEntity(map['id'], map['score']);
+    var entity = ScoreEntity(map['id'], map['score'],map['name']);
     entity.creationDate = DateTime.parse(map['creation_date']);
 
     return entity;
@@ -19,12 +20,13 @@ class ScoreEntity {
   Map<String, dynamic> toMap() {
     return {
       'creation_date': creationDate.toIso8601String(),
+      'name': name,
       'score': score,
     };
   }
 
   @override
   String toString() {
-    return 'ScoreEntity{id: $id, score: $score, creation_date: $creationDate}';
+    return 'ScoreEntity{id: $id, name:$name, score: $score, creation_date: $creationDate}';
   }
 }

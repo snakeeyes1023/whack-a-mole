@@ -40,7 +40,7 @@ class _ScoreValidatorViewState extends State<ScoreValidatorView> {
       });
 
       ScoreEntity score =
-          ScoreEntity(0, int.parse(widget.scoreController.text));
+          ScoreEntity(0,int.parse(widget.scoreController.text),widget.nameController.text, );
 
       widget.dbHelper.insertScore(score);
     }

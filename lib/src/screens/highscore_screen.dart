@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 import '../components/custom_button.dart';
+import '../data/entities/score_entity.dart';
+import '../data/services/score_services.dart';
 import 'home_screen.dart';
 
 /// Displays the various settings that can be customized by the user.
@@ -9,27 +11,15 @@ import 'home_screen.dart';
 class HighscoreScreen extends StatefulWidget {
   HighscoreScreen({super.key});
 
-  final List<String> entriesDate = <String>[
-    '06/10/2022 15:04:55',
-    '06/10/2022 15:04:55',
-    '06/10/2022 15:04:55',
-    '06/10/2022 15:04:55',
-    '06/10/2022 15:04:55',
-  ];
-  final List<String> entriesPlayerName = <String>[
-    'PLAYERA',
-    'PLAYERB',
-    'PLAYERC',
-    'PLAYERD',
-    'PLAYERE'
-  ];
-  final List<String> entriesScore = <String>[
-    '1000',
-    '2000',
-    '5000',
-    '4500',
-    '10000'
-  ];
+
+  
+  final dbHelper = ScoreService();
+
+
+  List<ScoreEntity> scores = [];
+
+
+  
 
   var listIndex;
 
@@ -37,8 +27,18 @@ class HighscoreScreen extends StatefulWidget {
   _HighscoreScreenState createState() => _HighscoreScreenState();
 }
 
+
+
+
+
 class _HighscoreScreenState extends State<HighscoreScreen> {
+
+
+
   Widget build(BuildContext context) {
+
+    
+
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 16, 28, 79),
         body: Padding(
@@ -81,9 +81,19 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                     children: <Widget>[
                                       SizedBox(
                                           height: 250,
-                                          child: ListView.separated(
+                                          child: FutureBuilder(
+                                            future: widget.dbHelper.scores(),
+
+                                            builder: (context, snapshot) {
+                                            
+                                            
+                                            if (snapshot.hasData) {
+
+                                              widget.scores = snapshot.data!;
+                                             
+                                            return ListView.separated(
                                             itemCount:
-                                                widget.entriesDate.length,
+                                                widget.scores.length,
                                             itemBuilder: (BuildContext context,
                                                 int index) {
                                               return GestureDetector(
@@ -128,8 +138,8 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                                     .width *
                                                                 0.02),
                                                         child: Text(
-                                                          widget.entriesDate[
-                                                              index],
+                                                          widget.scores[
+                                                              index].creationDate.toString().substring(0,19),
                                                           style:
                                                               const TextStyle(
                                                             color: Colors.white,
@@ -137,8 +147,8 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                         ),
                                                       ),
                                                       Text(
-                                                        widget.entriesPlayerName[
-                                                            index],
+                                                        widget.scores[
+                                                            index].name,
                                                         textAlign:
                                                             TextAlign.center,
                                                         style: const TextStyle(
@@ -153,8 +163,8 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                                     .width *
                                                                 0.02),
                                                         child: Text(
-                                                          widget.entriesScore[
-                                                              index],
+                                                          widget.scores[
+                                                              index].score.toString(),
                                                           style:
                                                               const TextStyle(
                                                                   color: Colors
@@ -172,7 +182,14 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                     const Divider(
                                               height: 2,
                                             ),
-                                          )),
+                                          );
+                                            } else {
+                                              return const Center(
+                                                child: CircularProgressIndicator(),
+                                              );
+                                            }
+                                          }), 
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -195,3 +212,6 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                 ]))));
   }
 }
+
+
+                                          
