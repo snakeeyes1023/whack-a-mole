@@ -17,7 +17,7 @@ class ScoreService {
       join(await getDatabasesPath(), databasePath),
       onCreate: (db, version) {
         return db.execute(
-          "CREATE TABLE IF NOT EXISTS $tableScoreName(id INTEGER PRIMARY KEY, score INTEGER, creation_date TEXT)",
+          "CREATE TABLE IF NOT EXISTS $tableScoreName(id INTEGER PRIMARY KEY,name TEXT, score INTEGER, creation_date TEXT)",
         );
       },
       version: 2,
