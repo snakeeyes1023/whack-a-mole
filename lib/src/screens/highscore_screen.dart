@@ -5,21 +5,16 @@ import '../components/custom_button.dart';
 import '../data/entities/score_entity.dart';
 import '../data/services/score_services.dart';
 import 'home_screen.dart';
+import 'package:jiffy/jiffy.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
 class HighscoreScreen extends StatefulWidget {
   HighscoreScreen({super.key});
 
-
-  
   final dbHelper = ScoreService();
 
-
   List<ScoreEntity> scores = [];
-
-
-  
 
   var listIndex;
 
@@ -27,18 +22,8 @@ class HighscoreScreen extends StatefulWidget {
   _HighscoreScreenState createState() => _HighscoreScreenState();
 }
 
-
-
-
-
 class _HighscoreScreenState extends State<HighscoreScreen> {
-
-
-
   Widget build(BuildContext context) {
-
-    
-
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 16, 28, 79),
         body: Padding(
@@ -80,115 +65,156 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                   child: Column(
                                     children: <Widget>[
                                       SizedBox(
-                                          height: 250,
-                                          child: FutureBuilder(
+                                        height: 250,
+                                        child: FutureBuilder(
                                             future: widget.dbHelper.scores(),
-
                                             builder: (context, snapshot) {
-                                            
-                                            
-                                            if (snapshot.hasData) {
+                                              if (snapshot.hasData) {
+                                                widget.scores = snapshot.data!;
 
-                                              widget.scores = snapshot.data!;
-                                             
-                                            return ListView.separated(
-                                            itemCount:
-                                                widget.scores.length,
-                                            itemBuilder: (BuildContext context,
-                                                int index) {
-                                              return GestureDetector(
-                                                onTapDown: (details) =>
-                                                    setState(() {
-                                                  // On récupère l'index de l'élément sur lequel on a cliqué
-                                                  widget.listIndex = index;
-                                                }),
-                                                onTapUp: (details) =>
-                                                    setState(() {
-                                                  widget.listIndex = null;
-                                                }),
-                                                onTapCancel: () => setState(() {
-                                                  widget.listIndex = null;
-                                                }),
-                                                child: Container(
-                                                  height: 50,
+                                                return ListView.separated(
+                                                  itemCount:
+                                                      widget.scores.length,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    return GestureDetector(
+                                                      onTapDown: (details) =>
+                                                          setState(() {
+                                                        // On récupère l'index de l'élément sur lequel on a cliqué
+                                                        widget.listIndex =
+                                                            index;
+                                                      }),
+                                                      onTapUp: (details) =>
+                                                          setState(() {
+                                                        widget.listIndex = null;
+                                                      }),
+                                                      onTapCancel: () =>
+                                                          setState(() {
+                                                        widget.listIndex = null;
+                                                      }),
+                                                      child: Container(
+                                                        height: 50,
 
-                                                  // Si l'index égal à l'index de la liste, alors on change la couleur
+                                                        // Si l'index égal à l'index de la liste, alors on change la couleur
 
-                                                  color: (widget.listIndex ==
-                                                          index)
-                                                      ? Colors.blue[
-                                                          index % 2 == 0
-                                                              ? 600
-                                                              : 500]
-                                                      : Colors.grey[
-                                                          index % 2 == 0
-                                                              ? 600
-                                                              : 500],
+                                                        color:
+                                                            (widget.listIndex ==
+                                                                    index)
+                                                                ? Colors
+                                                                        .blue[
+                                                                    index % 2 ==
+                                                                            0
+                                                                        ? 600
+                                                                        : 500]
+                                                                : Colors
+                                                                        .grey[
+                                                                    index % 2 ==
+                                                                            0
+                                                                        ? 600
+                                                                        : 500],
 
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: <Widget>[
-                                                      Padding(
-                                                        padding: EdgeInsets.only(
-                                                            left: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                0.02),
-                                                        child: Text(
-                                                          widget.scores[
-                                                              index].creationDate.toString().substring(0,19),
-                                                          style:
-                                                              const TextStyle(
-                                                            color: Colors.white,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        widget.scores[
-                                                            index].name,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: const TextStyle(
-                                                            color:
-                                                                Colors.white),
-                                                      ),
-                                                      Padding(
-                                                        padding: EdgeInsets.only(
-                                                            right: MediaQuery.of(
-                                                                        context)
-                                                                    .size
-                                                                    .width *
-                                                                0.02),
-                                                        child: Text(
-                                                          widget.scores[
-                                                              index].score.toString(),
-                                                          style:
-                                                              const TextStyle(
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: <Widget>[
+                                                            Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  left: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.02),
+                                                              child: Text(
+                                                                Jiffy(widget
+                                                                        .scores[
+                                                                            index]
+                                                                        .creationDate)
+                                                                    .yMd,
+                                                                style:
+                                                                    const TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              widget
+                                                                  .scores[index]
+                                                                  .name,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: const TextStyle(
                                                                   color: Colors
                                                                       .white),
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  right: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.02),
+                                                              child: Text(
+                                                                widget
+                                                                    .scores[
+                                                                        index]
+                                                                    .score
+                                                                    .toString(),
+                                                                style: const TextStyle(
+                                                                    color: Colors
+                                                                        .white),
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    right: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.02),
+                                                                child:
+                                                                    TextButton(
+                                                                  style:
+                                                                      ButtonStyle(
+                                                                    foregroundColor: MaterialStateProperty.all<
+                                                                            Color>(
+                                                                        Colors
+                                                                            .blue),
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    /*Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              // TODO : UpdateScreen(widget.scores[index])),
+                                                                        );*/
+                                                                  },
+                                                                  child: Text(
+                                                                      'Modifier'),
+                                                                )),
+                                                          ],
                                                         ),
                                                       ),
-                                                    ],
+                                                    );
+                                                  },
+                                                  separatorBuilder:
+                                                      (BuildContext context,
+                                                              int index) =>
+                                                          const Divider(
+                                                    height: 2,
                                                   ),
-                                                ),
-                                              );
-                                            },
-                                            separatorBuilder:
-                                                (BuildContext context,
-                                                        int index) =>
-                                                    const Divider(
-                                              height: 2,
-                                            ),
-                                          );
-                                            } else {
-                                              return const Center(
-                                                child: CircularProgressIndicator(),
-                                              );
-                                            }
-                                          }), 
+                                                );
+                                              } else {
+                                                return const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                );
+                                              }
+                                            }),
                                       ),
                                     ],
                                   ),
@@ -212,6 +238,3 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                 ]))));
   }
 }
-
-
-                                          
