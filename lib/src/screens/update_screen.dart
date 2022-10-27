@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:wack_a_mole/src/data/entities/score_entity.dart';
+import 'package:wack_a_mole/src/data/services/score_services.dart';
 
 class UpdateScreen extends StatefulWidget {
   final id;
@@ -12,6 +13,8 @@ class UpdateScreen extends StatefulWidget {
       : id = scoreEntity.id,
         name = scoreEntity.name,
         score = scoreEntity.score;
+
+        final dbHelper = ScoreService();
 
   @override
   _UpdateScreenState createState() => _UpdateScreenState();
@@ -73,11 +76,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  Navigator.pop(context, {
-                    'id': widget.id,
-                    'name': _nameController.text,
-                    'score': int.parse(_scoreController.text),
-                  });
+                  widget.dbHelper.updateScore(ScoreEntity(widget.id, int.parse(_scoreController.text), _nameController.text));
+                  Navigator.pop(context, {});
                 }
               },
               child: Text('Update'),
