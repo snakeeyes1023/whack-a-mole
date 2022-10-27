@@ -1,30 +1,23 @@
 # wack_a_mole
 
-A new Flutter project.
+A simple game of wack a mole.
 
-## Getting Started
+## Ajouter un score
 
-This project is a starting point for a Flutter application that follows the
-[simple app state management
-tutorial](https://flutter.dev/docs/development/data-and-backend/state-mgmt/simple).
+- Aller dans la page ScoreValidator
+- Remplir tous les champs et appuyez sur insérer
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Consulter les scores
 
-## Assets
+- Aller dans la page HighScore
 
-The `assets` directory houses images, fonts, and any other files you want to
-include with your application.
 
-The `assets/images` directory contains [resolution-aware
-images](https://flutter.dev/docs/development/ui/assets-and-images#resolution-aware).
+## Supprimer un score
 
-## Localization
+- Aller dans la page HighScore
+- Glisser vers la gauche pour supprimer un score
 
-This project generates localized messages based on arb files found in
-the `lib/src/localization` directory.
+## Modifier un score
 
-To support additional languages, please visit the tutorial on
-[Internationalizing Flutter
-apps](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
+- Aller dans la page HighScore
+- Cliquer sur le boutton modifier un score
