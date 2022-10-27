@@ -35,13 +35,6 @@ class ScoreService {
       score.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-
-    print('Score inserted');
-    final List<ScoreEntity> scoresList = await scores();
-
-    scoresList.forEach((element) {
-      print(element.toString());
-    });
   }
 
   Future<List<ScoreEntity>> scores() async {
