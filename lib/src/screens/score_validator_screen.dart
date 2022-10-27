@@ -6,6 +6,8 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import '../components/custom_button.dart';
 import '../components/input/custom_input_field.dart';
 import '../helper/color_helper.dart';
+import '../data/entities/score_entity.dart';
+import '../data/services/score_services.dart';
 
 class ScoreValidatorView extends StatefulWidget {
   ScoreValidatorView({super.key});
@@ -16,6 +18,8 @@ class ScoreValidatorView extends StatefulWidget {
   TextEditingController dateController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController scoreController = TextEditingController();
+
+  final dbHelper = ScoreService();
 
   @override
   _ScoreValidatorViewState createState() => _ScoreValidatorViewState();
@@ -34,6 +38,11 @@ class _ScoreValidatorViewState extends State<ScoreValidatorView> {
         widget.scoreExists =
             (widget.randomInstance.nextDouble() > .5).toString();
       });
+
+      ScoreEntity score =
+          ScoreEntity(0,int.parse(widget.scoreController.text),widget.nameController.text, );
+
+      widget.dbHelper.insertScore(score);
     }
   }
 
