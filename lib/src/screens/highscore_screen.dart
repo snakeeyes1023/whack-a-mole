@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:wack_a_mole/src/screens/update_screen.dart';
 
 import '../components/custom_button.dart';
 import '../data/entities/score_entity.dart';
 import '../data/services/score_services.dart';
 import 'home_screen.dart';
+import 'package:jiffy/jiffy.dart';
 
 /// Displays the various settings that can be customized by the user.
 ///
@@ -77,21 +79,22 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                   itemBuilder:
                                                       (BuildContext context,
                                                           int index) {
-                                                            
                                                     return Dismissible(
-
-                                                      key: Key(
-                                                          UniqueKey().toString()),
-                                                      direction: DismissDirection.endToStart,
-
-                                                      onDismissed:
-                                                          (direction) {
+                                                      key: Key(UniqueKey()
+                                                          .toString()),
+                                                      direction:
+                                                          DismissDirection
+                                                              .endToStart,
+                                                      onDismissed: (direction) {
                                                         setState(() {
-                                                          widget.dbHelper.deleteScore(
-                                                              widget.scores[index]
-                                                                  .id);
-                                                          widget.scores.removeAt(
-                                                              index);
+                                                          widget.dbHelper
+                                                              .deleteScore(
+                                                                  widget
+                                                                      .scores[
+                                                                          index]
+                                                                      .id);
+                                                          widget.scores
+                                                              .removeAt(index);
                                                         });
                                                       },
                                                       background: Container(
@@ -101,7 +104,6 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                           color: Colors.white,
                                                         ),
                                                       ),
-                                                     
                                                       child: Container(
                                                         height: 50,
 
@@ -136,13 +138,11 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                                           .width *
                                                                       0.02),
                                                               child: Text(
-                                                                widget
-                                                                    .scores[
-                                                                        index]
-                                                                    .creationDate
-                                                                    .toString()
-                                                                    .substring(
-                                                                        0, 19),
+                                                                Jiffy(widget
+                                                                        .scores[
+                                                                            index]
+                                                                        .creationDate)
+                                                                    .yMd,
                                                                 style:
                                                                     const TextStyle(
                                                                   color: Colors
@@ -179,6 +179,34 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                                         .white),
                                                               ),
                                                             ),
+                                                            Padding(
+                                                                padding: EdgeInsets.only(
+                                                                    right: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.02),
+                                                                child:
+                                                                    TextButton(
+                                                                  style:
+                                                                      ButtonStyle(
+                                                                    foregroundColor: MaterialStateProperty.all<
+                                                                            Color>(
+                                                                        Colors
+                                                                            .blue),
+                                                                  ),
+                                                                  onPressed:
+                                                                      () {
+                                                                    Navigator
+                                                                        .push(
+                                                                      context,
+                                                                      MaterialPageRoute(
+                                                                          builder: (context) =>
+                                                                              UpdateScreen(scoreEntity: widget.scores[index])),
+                                                                    );
+                                                                  },
+                                                                  child: Text(
+                                                                      'Modifier'),
+                                                                )),
                                                           ],
                                                         ),
                                                       ),
