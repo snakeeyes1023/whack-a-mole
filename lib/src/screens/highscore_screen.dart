@@ -79,21 +79,31 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                   itemBuilder:
                                                       (BuildContext context,
                                                           int index) {
-                                                    return GestureDetector(
-                                                      onTapDown: (details) =>
-                                                          setState(() {
-                                                        // On récupère l'index de l'élément sur lequel on a cliqué
-                                                        widget.listIndex =
-                                                            index;
-                                                      }),
-                                                      onTapUp: (details) =>
-                                                          setState(() {
-                                                        widget.listIndex = null;
-                                                      }),
-                                                      onTapCancel: () =>
-                                                          setState(() {
-                                                        widget.listIndex = null;
-                                                      }),
+                                                    return Dismissible(
+                                                      key: Key(UniqueKey()
+                                                          .toString()),
+                                                      direction:
+                                                          DismissDirection
+                                                              .endToStart,
+                                                      onDismissed: (direction) {
+                                                        setState(() {
+                                                          widget.dbHelper
+                                                              .deleteScore(
+                                                                  widget
+                                                                      .scores[
+                                                                          index]
+                                                                      .id);
+                                                          widget.scores
+                                                              .removeAt(index);
+                                                        });
+                                                      },
+                                                      background: Container(
+                                                        color: Colors.red,
+                                                        child: const Icon(
+                                                          Icons.delete,
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
                                                       child: Container(
                                                         height: 50,
 
