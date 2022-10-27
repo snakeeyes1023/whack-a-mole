@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:wack_a_mole/src/screens/update_screen.dart';
 
 import '../components/custom_button.dart';
 import '../data/entities/score_entity.dart';
@@ -185,13 +186,13 @@ class _HighscoreScreenState extends State<HighscoreScreen> {
                                                                   ),
                                                                   onPressed:
                                                                       () {
-                                                                    /*Navigator
+                                                                    Navigator
                                                                         .push(
                                                                       context,
                                                                       MaterialPageRoute(
                                                                           builder: (context) =>
-                                                                              // TODO : UpdateScreen(widget.scores[index])),
-                                                                        );*/
+                                                                              UpdateScreen(scoreEntity: widget.scores[index])),
+                                                                    );
                                                                   },
                                                                   child: Text(
                                                                       'Modifier'),
