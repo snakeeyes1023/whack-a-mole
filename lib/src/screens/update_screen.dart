@@ -1,5 +1,3 @@
-//Create a screen that will display the elements of the selected score in highscore screen
-
 import 'package:flutter/material.dart';
 import 'package:wack_a_mole/src/data/entities/score_entity.dart';
 import 'package:wack_a_mole/src/data/services/score_services.dart';
